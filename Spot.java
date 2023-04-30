@@ -52,6 +52,13 @@ public class Spot extends StackPane {
     public double getTileY() {
         return tile.getY();
     }
+    
+    public ImageView getImageView() {
+        return imageView;
+    }
 
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
 
 }
