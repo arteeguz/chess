@@ -30,62 +30,62 @@ public class ChessBoard extends GridPane{
                 // alternates the color of the tiles
                 tile.setFill((i + j) % 2 == 0 ? lightColor : darkColor);
                 Piece piece = null;
-                if (j == 0 || j == 7) {
-                    switch (i) {
+               if (i == 0 || i == 7) {
+                    switch (j) {
                         case 0:
                         case 7:
-                        if((i + j) % 2 == 0 ){
-                             bool = true;
-                        }else{
-                             bool =false;
-                        }
+                            if (i < 2) {
+                                bool = false;
+                            } else {
+                                bool = true;
+                            }
                             piece = new Rook(false, bool);
                             break;
                         case 1:
                         case 6:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
-                       }else{
-                            bool =false;
-                       }
+                            if (i < 2) {
+                                bool = false;
+                            } else {
+                                bool = true;
+                            }
                             piece = new Knight(false, bool);
                             break;
                         case 2:
                         case 5:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
-                       }else{
-                            bool =false;
-                       }
+                            if (i < 2) {
+                                bool = false;
+                            } else {
+                                bool = true;
+                            }
                             piece = new Bishop(false, bool);
                             break;
                         case 3:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
-                       }else{
-                            bool =false;
-                       }
+                            if (i < 2) {
+                                bool = false;
+                            } else {
+                                bool = true;
+                            }
                             piece = new Queen(false, bool);
                             break;
                         case 4:
-                            if((i + j) % 2 == 0 ){
+                            if (i < 2) {
+                                bool = false;
+                            } else {
                                 bool = true;
-                            }else{
-                            bool =false;
                             }
                             piece = new King(false, bool);
                             break;
                     }
-                } else if (j == 1 || j == 6) {
-                    if((i + j) % 2 == 0 ){
+                } else if (i == 1 || i == 6) {
+                    if (i < 2) {
+                        bool = false;
+                    } else {
                         bool = true;
-                   }else{
-                        bool =false;
-                   }
+                    }
                     piece = new Pawn(false, bool);
                 }
                 Spot spot = new Spot(piece, tile);
-                spots[i][j] = spot;
+               
                 this.add(tile, j, i);
                 
                 // Load the chess piece image
@@ -98,8 +98,10 @@ public class ChessBoard extends GridPane{
                         imageView.setFitWidth(40);
                         imageView.setFitHeight(40);
                         spot.getChildren().add(imageView);
+                        spot.setImageView(imageView);
                     }
                 }
+                 spots[i][j] = spot;
                 this.add(spot, j, i);
             }
         }
