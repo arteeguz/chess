@@ -1,14 +1,13 @@
-package com.example;
+package application;
 
 public class Player {
     
     private String name;
-    private boolean isBlack;
-    //timer
+    private boolean isPlayingBlack;
 
-    public Player(String name, boolean isBlack) {
+    public Player(String name, boolean isPlayingBlack) {
         this.name = name;
-        this.isBlack = isBlack;
+        this.isPlayingBlack = isPlayingBlack;
     }
 
     public String getName() {
@@ -16,7 +15,6 @@ public class Player {
     }
 
     public boolean isBlack() {
-        return isBlack;
+        return isPlayingBlack;
     }
 }
-

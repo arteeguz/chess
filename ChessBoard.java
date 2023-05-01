@@ -1,4 +1,4 @@
-package com.example;
+package application;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class ChessBoard extends GridPane{
     boolean bool = false;
     private Spot[][] spots = new Spot[8][8];
     //GridPane grid = new GridPane();
-    static final String IMAGE_PATH = "demo\\src\\main\\java\\com\\example\\images"; 
+    static final String IMAGE_PATH = "images"; 
 
     public ChessBoard(int size) {
        
@@ -104,6 +104,10 @@ public class ChessBoard extends GridPane{
             }
         }
     }
+
+	public int getSize() {
+		return size;
+	}
 
    
 

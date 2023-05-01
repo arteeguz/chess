@@ -1,5 +1,8 @@
-package com.example;
+package application;
+
 import java.util.ArrayList;
+
+import javafx.scene.image.Image;
 
 //Determine whether or not the Piece class should include the position of each Piece or
 //The tile class can determine that
@@ -18,6 +21,8 @@ public abstract class Piece {
 	
 	public abstract ArrayList<Move> legalMoves(ChessBoard board, Spot start);
 	public abstract String getName(Piece piece);
+    public abstract Image getImage();
+
 	//if the piece is White false is returned and true is returned for a Black piece
 	public Boolean getwhitePiece() {
 		return whitePiece;
@@ -36,5 +41,5 @@ public abstract class Piece {
 		this.isKilled = isKilled;
 	}
 
-  
+
 }

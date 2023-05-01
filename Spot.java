@@ -1,26 +1,49 @@
-package com.example;
+package application;
 
+import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Spot extends StackPane {
-
     private Piece piece;
-    private Rectangle tile;
-    private ImageView imageView;
+    private final Rectangle highlight;
+    private final Color lightColor = Color.rgb(255, 206, 158);
+    private final Color darkColor = Color.rgb(209, 139, 71);
+    private final ImageView pieceImageView;
 
-    public Spot(Piece piece, Rectangle tile) {
+    public Spot(Piece piece, Rectangle rectangle) {
         this.piece = piece;
-        this.tile = tile;
-    }
+        this.highlight = new Rectangle(50, 50, Color.rgb(0, 0, 255, 0.5));
+        this.highlight.setVisible(false);
+        this.getChildren().addAll(rectangle, highlight);
+        if (piece != null) {
+            pieceImageView = new ImageView(piece.getImage());
+            this.getChildren().add(pieceImageView);
+        } else {
+            pieceImageView = null;
+        }
 
-    public Spot(Piece piece, Rectangle tile, ImageView imageView) {
-        this.piece = piece;
-        this.tile = tile;
-        this.imageView = imageView;
+        this.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (piece != null) {
+                    toFront();
+                }
+            }
+        });
 
+        this.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (piece != null) {
+                    setTranslateX(getTranslateX() + event.getX() - 25);
+                    setTranslateY(getTranslateY() + event.getY() - 25);
+                }
+            }
+        });
     }
 
     public Piece getPiece() {
@@ -29,29 +52,22 @@ public class Spot extends StackPane {
 
     public void setPiece(Piece piece) {
         this.piece = piece;
-    
+        if (piece != null) {
+            pieceImageView.setImage(piece.getImage());
+        } else {
+            this.getChildren().remove(pieceImageView);
+        }
     }
 
-    public Rectangle getTile() {
-        return tile;
+    public Rectangle getHighlight() {
+        return highlight;
     }
 
-    public void getTileColor() {
-        Color color = (Color) tile.getFill();
-        System.out.println("Rectangle color: " + color.toString()); 
+    public Color getLightColor() {
+        return lightColor;
     }
 
-    public void setTile(Rectangle tile) {
-        this.tile = tile;
+    public Color getDarkColor() {
+        return darkColor;
     }
-
-    public double getTileX() {
-        return tile.getX();
-    }
-
-    public double getTileY() {
-        return tile.getY();
-    }
-
-
 }

@@ -1,5 +1,8 @@
-package com.example;
+package application;
+
 import java.util.ArrayList;
+
+import javafx.scene.image.Image;
 
 public class Bishop extends Piece {
 
@@ -23,6 +26,12 @@ public class Bishop extends Piece {
 			color="black";
 		}
 		return color +"Bishop";
+	}
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
