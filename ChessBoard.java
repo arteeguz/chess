@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 
+import application.Player.PieceColor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -17,6 +18,21 @@ public class ChessBoard extends GridPane{
     private Spot[][] spots = new Spot[8][8];
     //GridPane grid = new GridPane();
     static final String IMAGE_PATH = "images"; 
+    
+    
+    public Spot getSpot(int row, int col) {
+        if (row < 0 || row >= size || col < 0 || col >= size) {
+            return null;
+        }
+        return spots[row][col];
+    }
+    public void resetHighlights() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                spots[i][j].resetColor();
+            }
+        }
+    }
 
     public ChessBoard(int size) {
        
@@ -30,73 +46,83 @@ public class ChessBoard extends GridPane{
                 // alternates the color of the tiles
                 tile.setFill((i + j) % 2 == 0 ? lightColor : darkColor);
                 Piece piece = null;
-                if (j == 0 || j == 7) {
-                    switch (i) {
+               boolean isSpotOccupied = false;
+                if (i == 0 || i == 7) {
+                    switch (j) {
                         case 0:
                         case 7:
-                        if((i + j) % 2 == 0 ){
-                             bool = true;
+                        if(i < 2 ){
+                             bool = false;
                         }else{
-                             bool =false;
+                             bool =true;
                         }
-                            piece = new Rook(false, bool);
+                            piece = new Rook(bool);
+                            isSpotOccupied = true;
                             break;
                         case 1:
                         case 6:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
+                        if(i <2 ){
+                            bool = false;
                        }else{
-                            bool =false;
+                            bool =true;
                        }
-                            piece = new Knight(false, bool);
+                            piece = new Knight(bool);
+                            isSpotOccupied = true;
                             break;
                         case 2:
                         case 5:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
+                        if(i < 2 ){
+                            bool = false;
                        }else{
-                            bool =false;
+                            bool =true;
                        }
-                            piece = new Bishop(false, bool);
+                            piece = new Bishop(bool);
+                            isSpotOccupied = true;
                             break;
                         case 3:
-                        if((i + j) % 2 == 0 ){
-                            bool = true;
+                        if(i < 2 ){
+                            bool = false;
                        }else{
-                            bool =false;
+                            bool =true;
                        }
-                            piece = new Queen(false, bool);
+                            piece = new Queen(bool);
+                            isSpotOccupied = true;
                             break;
                         case 4:
-                            if((i + j) % 2 == 0 ){
-                                bool = true;
+                            if( i < 2 ){
+                                bool = false;
                             }else{
-                            bool =false;
+                            bool =true;
                             }
-                            piece = new King(false, bool);
+                            piece = new King(bool);
+                            isSpotOccupied = true;
                             break;
                     }
-                } else if (j == 1 || j == 6) {
-                    if((i + j) % 2 == 0 ){
-                        bool = true;
+                } else if (i == 1 || i == 6) {
+                    if(i < 2){
+                        bool = false;
                    }else{
-                        bool =false;
+                        bool =true;
                    }
-                    piece = new Pawn(false, bool);
+                    piece = new Pawn(bool ? PieceColor.WHITE : PieceColor.BLACK);
+                    isSpotOccupied = true;
                 }
-                Spot spot = new Spot(piece, tile);
+                Spot spot = new Spot(piece, tile, isSpotOccupied, this);
                 spots[i][j] = spot;
                 this.add(tile, j, i);
                 
-                // Load the chess piece image
-                if (piece != null && piece.getName(piece) != null) {
-                    String imagePath = IMAGE_PATH + "\\"+ piece.getName(piece)+".png";
+                
+                
+             // Load the chess piece image
+                if (piece != null) {
+                    String imagePath = IMAGE_PATH + "\\" + piece.getImageName() + ".png";
                     File imageFile = new File(imagePath);
                     if (imageFile.exists()) {
                         Image image = new Image(imageFile.toURI().toString());
                         ImageView imageView = new ImageView(image);
                         imageView.setFitWidth(40);
                         imageView.setFitHeight(40);
+                        spot.setImageView(imageView);
                         spot.getChildren().add(imageView);
                     }
                 }
@@ -104,11 +130,4 @@ public class ChessBoard extends GridPane{
             }
         }
     }
-
-	public int getSize() {
-		return size;
-	}
-
-   
-
 }

@@ -2,13 +2,12 @@ package application;
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
+import application.Player.PieceColor;
 
 public class King extends Piece {
 
-	King(Boolean isKilled, Boolean whitePiece) {
-		super(isKilled, whitePiece);
-		// TODO Auto-generated constructor stub
+	public King(boolean isWhite) {
+	    super(isWhite ? PieceColor.WHITE : PieceColor.BLACK);
 	}
 
 	@Override
@@ -16,20 +15,18 @@ public class King extends Piece {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public String getName(Piece piece) {
-		String color;
-		if(piece.getwhitePiece()){
-			color = "white";
-		}else{
-			color="black";
-		}
-		return color +"King";
-	}
 
 	@Override
-	public Image getImage() {
+	public String getName(Piece piece) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean canMove(ChessBoard board, Spot start, Spot end) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 }

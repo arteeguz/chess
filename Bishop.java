@@ -2,15 +2,14 @@ package application;
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
+import application.Player.PieceColor;
 
 public class Bishop extends Piece {
 
-	Bishop(Boolean isKilled, Boolean whitePiece) {
-		super(isKilled, whitePiece);
-		// TODO Auto-generated constructor stub
+	public Bishop(boolean isWhite) {
+	    super(isWhite ? PieceColor.WHITE : PieceColor.BLACK);
 	}
-
+	
 	@Override
 	public ArrayList<Move> legalMoves(ChessBoard board, Spot start) {
 		// TODO Auto-generated method stub
@@ -19,19 +18,15 @@ public class Bishop extends Piece {
 
 	@Override
 	public String getName(Piece piece) {
-		String color;
-		if(piece.getwhitePiece()){
-			color = "white";
-		}else{
-			color="black";
-		}
-		return color +"Bishop";
-	}
-
-	@Override
-	public Image getImage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean canMove(ChessBoard board, Spot start, Spot end) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
