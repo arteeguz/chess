@@ -6,8 +6,10 @@ import application.Player.PieceColor;
 
 public class King extends Piece {
 
-	public King(boolean isWhite) {
-	    super(isWhite ? PieceColor.WHITE : PieceColor.BLACK);
+
+
+	King(PieceColor isWhite) {
+		super(isWhite);
 	}
 
 	@Override
@@ -17,16 +19,10 @@ public class King extends Piece {
 	}
 
 	@Override
-	public String getName(Piece piece) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean canMove(ChessBoard board, Spot start, Spot end) {
 		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Unimplemented method 'canMove'");
 	}
 
-	
+
 }

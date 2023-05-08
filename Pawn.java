@@ -7,12 +7,14 @@ import application.Player.PieceColor;
 public class Pawn extends Piece {
 
 	private boolean firstMove;
+	
 
-
-	public Pawn(PieceColor color) {
-	    super(color);
+	public Pawn(PieceColor isWhite) {
+	    super(isWhite);
 	    this.firstMove = true;
+		
 	}
+
 	public boolean isFirstMove() {
 	    return firstMove;
 	}
@@ -32,6 +34,7 @@ public class Pawn extends Piece {
 	    Spot forwardSpot = board.getSpot(row + direction, col);
 	    if (forwardSpot != null && !forwardSpot.isSpotOccupied()) {
 	        moves.add(new Move(start, forwardSpot));
+			
 	    }
 
 	    // Check for two steps forward if the pawn is at the initial position
@@ -53,11 +56,6 @@ public class Pawn extends Piece {
 	    return moves;
 	}
 
-	@Override
-	public String getName(Piece piece) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public boolean canMove(ChessBoard board, Spot start, Spot end) {
@@ -90,6 +88,4 @@ public class Pawn extends Piece {
 
 	    return false;
 	}
-
-
 }

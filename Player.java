@@ -1,7 +1,6 @@
 package application;
 
 public class Player {
-    
     private String name;
     private PieceColor pieceColor;
 
