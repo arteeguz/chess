@@ -1,33 +1,38 @@
 package application;
 
-public class Player {
-    private String name;
-    private PieceColor pieceColor;
+public abstract class Player {
+    protected String name;
+    protected boolean isTurn;
 
-    public Player(String name, PieceColor pieceColor) {
-        this.name = name;
-        this.pieceColor = pieceColor;
-    }
     
-    public enum PieceColor {
-        WHITE,
-        BLACK
+    public Player(String name,boolean isTurn)  {
+        this.name = name;
+        this.isTurn = isTurn;
     }
-
+    public Player(Player player) {
+        this.name = player.name;
+        this.isTurn = player.isTurn;
+    }
 
     public String getName() {
         return name;
     }
 
-    public PieceColor getPieceColor() {
-        return pieceColor;
+    public boolean isTurn() {
+        return isTurn;
     }
 
-    public boolean isWhite() {
-        return pieceColor == PieceColor.WHITE;
+    public void setTurn(boolean isTurn) {
+        this.isTurn = isTurn;
     }
 
-    public boolean isBlack() {
-        return pieceColor == PieceColor.BLACK;
+    public void changeTurn() {
+        isTurn = !isTurn;
     }
+    public enum PieceColor {
+            WHITE,
+            BLACK
+          }
+        
+    public abstract PieceColor getPieceColor();
 }

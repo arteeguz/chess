@@ -42,5 +42,6 @@ public abstract class Piece {
 		this.isKilled = isKilled;
 	}
 
+	
 
 }
