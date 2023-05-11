@@ -50,9 +50,11 @@ public class Queen extends Piece {
                 Spot end = board.getSpot(startRow, col);
                 // Create a Move object representing the move from the start position to the end
                 // position
+                if (canMove(board, start, end)) {
                 Move move = new Move(start, end);
                 // Add the move to the list of legal moves
                 moves.add(move);
+                }
             }
         }
 
@@ -60,8 +62,10 @@ public class Queen extends Piece {
         for (int row = 0; row < 8; row++) {
             if (row != startRow) {
                 Spot end = board.getSpot(row, startCol);
+                if (canMove(board, start, end)) {
                 Move move = new Move(start, end);
                 moves.add(move);
+                }
             }
         }
 
