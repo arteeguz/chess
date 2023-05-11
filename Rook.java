@@ -30,9 +30,11 @@ public class Rook extends Piece {
                 Spot end = board.getSpot(currentRow, col);
                 // Create a Move object representing the move from the start position to the end
                 // position
+                if (canMove(board, start, end)) {
                 Move move = new Move(start, end);
                 // Add the move to the list of legal moves
                 moves.add(move);
+                }
             }
         }
 
@@ -40,8 +42,10 @@ public class Rook extends Piece {
         for (int row = 0; row < 8; row++) {
             if (row != currentRow) {
                 Spot end = board.getSpot(row, currentCol);
+                if (canMove(board, start, end)) {
                 Move move = new Move(start, end);
                 moves.add(move);
+                }
             }
         }
         // Return the list of legal moves
