@@ -2,14 +2,39 @@ package application;
 
 import java.util.ArrayList;
 
-import application.Player.PieceColor;
 
+/**
+ * 
+ * the Bishop class extends the Piece class and represents a bishop chess piece.
+ * 
+ * It contains methods for computing the legal moves and checking if a move is
+ * valid.
+ */
 public class Bishop extends Piece {
-
-    public Bishop(PieceColor isWhite) {
-        super(isWhite);
+    /**
+     * 
+     * constructor for the Bishop class.
+     * 
+     * @param color a PieceColor enum representing the color of the bishop
+     *              (either white or black)
+     */
+    public Bishop(PieceColor color) {
+        super(color);
     }
 
+    /**
+     * 
+     * computes all the legal moves that the bishop can make from the
+     * starting spot on the given board.
+     * 
+     * @param board the ChessBoard object representing the current state of the
+     *              chess board
+     * 
+     * @param start the Spot object representing the starting spot of the bishop
+     * 
+     * @return an ArrayList of all legal moves that the bishop can make
+     *         from the starting spot
+     */
     @Override
     public ArrayList<Move> legalMoves(ChessBoard board, Spot start) {
         ArrayList<Move> moves = new ArrayList<>();
@@ -45,6 +70,22 @@ public class Bishop extends Piece {
         return moves;
     }
 
+    /**
+     * 
+     * checks if the bishop can move from the given starting spot to the given
+     * ending spot on the given board.
+     * 
+     * @param board the ChessBoard object representing the current state of the
+     *              chess board
+     * 
+     * @param start the Spot object representing the starting spot of the bishop
+     * 
+     * @param end   the Spot object representing the ending spot of the bishop
+     * 
+     * @return true if the bishop can legally move from the starting spot to the
+     *         ending spot,
+     *         false otherwise
+     */
     @Override
     public boolean canMove(ChessBoard board, Spot start, Spot end) {
         if (end.isSpotOccupied() && end.getPiece().getColor() == getColor()) {

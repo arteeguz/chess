@@ -2,26 +2,62 @@ package application;
 
 import java.util.ArrayList;
 
-import application.Player.PieceColor;
 
+//import com.example.Player.PieceColor;
+
+/**
+* 
+* represents a Pawn piece in the chess game.
+*/
 public class Pawn extends Piece {
 
-	private boolean firstMove;
+	private boolean firstMove;// bool to check it is the pawns first move
 
-	public Pawn(PieceColor isWhite) {
-		super(isWhite);
+	/**
+	 * 
+	 * constructor for the pawn class.
+	 * 
+	 * @param color a PieceColor enum representing the color of the pawn
+	 *              (either white or black)
+	 *              sets the firstMove to true
+	 */
+	public Pawn(PieceColor color) {
+		super(color);
 		this.firstMove = true;
 
 	}
 
+	/**
+	 * 
+	 * returns whether this Pawn piece has moved before.
+	 * 
+	 * @return true if this Pawn has not moved before, false otherwise
+	 */
 	public boolean isFirstMove() {
 		return firstMove;
 	}
 
+	/**
+	 * 
+	 * sets whether this Pawn piece has moved before.
+	 * 
+	 * @param firstMove true if this Pawn has not moved before, false otherwise
+	 */
 	public void setFirstMove(boolean firstMove) {
 		this.firstMove = firstMove;
 	}
 
+	/**
+	 * 
+	 * returns a list of legal moves that this Pawn piece can make from its current
+	 * position on the given board.
+	 * 
+	 * @param board the chess board
+	 * 
+	 * @param start the starting spot of this Pawn piece
+	 * 
+	 * @return a list of legal moves for this Pawn piece
+	 */
 	@Override
 	public ArrayList<Move> legalMoves(ChessBoard board, Spot start) {
 		ArrayList<Move> moves = new ArrayList<>();
@@ -57,9 +93,22 @@ public class Pawn extends Piece {
 		return moves;
 	}
 
+	/**
+	 * 
+	 * returns whether this Pawn piece can move from the starting spot to the ending
+	 * spot on the given board.
+	 * 
+	 * @param board the chess board
+	 * 
+	 * @param start the starting spot of this Pawn piece
+	 * 
+	 * @param end   the ending spot of this Pawn piece
+	 * 
+	 * @return true if this Pawn piece can move to the ending spot, false otherwise
+	 */
 	@Override
 	public boolean canMove(ChessBoard board, Spot start, Spot end) {
-	
+
 		if (end.getPiece() != null && end.getPiece().getColor() == this.getColor()) {
 			return false; // Cannot move to a spot occupied by a piece of the same color
 		}
@@ -69,7 +118,7 @@ public class Pawn extends Piece {
 		int xEnd = end.getRow();
 		int yEnd = end.getColumn();
 
-		int yDirection = this.getColor() == Player.PieceColor.WHITE ? -1 : 1;
+		int yDirection = this.getColor() == PieceColor.WHITE ? -1 : 1;
 
 		// Move one square forward
 		if (xEnd == xStart + yDirection && yEnd == yStart) {

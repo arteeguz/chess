@@ -2,21 +2,44 @@ package application;
 
 import java.util.ArrayList;
 
-import application.Player.PieceColor;
 
+/**
+ * 
+ * The Rook class represents a chess piece of type rook. It extends the Piece
+ * class and overrides its abstract methods
+ * 
+ * to provide the specific behavior for a rook.
+ */
 public class Rook extends Piece {
 
-    Rook(PieceColor isWhite) {
-        super(isWhite);
+    /**
+     * 
+     * constructor for the rook class.
+     * 
+     * @param color a PieceColor enum representing the color of the rook
+     *              (either white or black)
+     *              sets the firstMove to true
+     */
+    Rook(PieceColor color) {
+        super(color);
 
     }
 
-    // Returns an ArrayList of all legal moves for the rook
-    // at the given start position on the given board
+    /**
+     * 
+     * returns an ArrayList of all legal moves for the rook at the given start
+     * position on the given board.
+     * 
+     * @param board the chess board on which the rook is located
+     * 
+     * @param start the starting spot of the rook
+     * 
+     * @return an ArrayList of all legal moves for the rook
+     */
     @Override
     public ArrayList<Move> legalMoves(ChessBoard board, Spot start) {
 
-        // Create an ArrayList to hold the legal moves
+        // create an ArrayList to hold the legal moves
         ArrayList<Move> moves = new ArrayList<Move>();
 
         // Get the row and column of the starting position
@@ -31,9 +54,9 @@ public class Rook extends Piece {
                 // Create a Move object representing the move from the start position to the end
                 // position
                 if (canMove(board, start, end)) {
-                Move move = new Move(start, end);
-                // Add the move to the list of legal moves
-                moves.add(move);
+                    Move move = new Move(start, end);
+                    // Add the move to the list of legal moves
+                    moves.add(move);
                 }
             }
         }
@@ -43,17 +66,30 @@ public class Rook extends Piece {
             if (row != currentRow) {
                 Spot end = board.getSpot(row, currentCol);
                 if (canMove(board, start, end)) {
-                Move move = new Move(start, end);
-                moves.add(move);
+                    Move move = new Move(start, end);
+                    // Add the move to the list of legal moves
+                    moves.add(move);
                 }
             }
+
         }
         // Return the list of legal moves
         return moves;
     }
 
-    // Returns true if the rook at the given start position can legally move to the
-    // given end position on the given board
+    /**
+     * 
+     * returns true if the rook at the given start position can legally move to the
+     * given end position on the given board.
+     * 
+     * @param board the chess board on which the rook is located
+     * 
+     * @param start the starting spot of the rook
+     * 
+     * @param end   the ending spot of the move
+     * 
+     * @return true if the move is legal, false otherwise
+     */
     @Override
     public boolean canMove(ChessBoard board, Spot start, Spot end) {
         // Check if the end spot is occupied by a piece of the same color as the rook
@@ -97,5 +133,4 @@ public class Rook extends Piece {
             return false;
         }
     }
-
 }

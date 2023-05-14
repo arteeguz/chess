@@ -1,38 +1,50 @@
 package application;
 
-public abstract class Player {
-    protected String name;
-    protected boolean isTurn;
 
-    
-    public Player(String name,boolean isTurn)  {
-        this.name = name;
-        this.isTurn = isTurn;
-    }
-    public Player(Player player) {
-        this.name = player.name;
-        this.isTurn = player.isTurn;
-    }
+/**
+ * 
+ * Player class represents a player in a chess game.
+ * 
+ * tt is an abstract class that can be extended to create different types of
+ * players.
+ */
+public interface Player {
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 
+     * gets the name of the player.
+     * 
+     * @return The name of the player.
+     */
+    public String getName();
 
-    public boolean isTurn() {
-        return isTurn;
-    }
+    /**
+     * 
+     * gets a value indicating whether it's the player's turn or not.
+     * 
+     * @return true if it's the player's turn, otherwise false.
+     */
+    public boolean isTurn();
 
-    public void setTurn(boolean isTurn) {
-        this.isTurn = isTurn;
-    }
+    /**
+     * 
+     * sets a value indicating whether it's the player's turn or not.
+     * 
+     * @param isTurn true if it's the player's turn, otherwise false.
+     */
+    public void setTurn(boolean isTurn);
 
-    public void changeTurn() {
-        isTurn = !isTurn;
-    }
-    public enum PieceColor {
-            WHITE,
-            BLACK
-          }
-        
-    public abstract PieceColor getPieceColor();
+    /**
+     * 
+     * changes the turn of the player.
+     */
+    public void changeTurn();
+
+    /**
+     * 
+     * gets the color of the player's pieces.
+     * 
+     * @return The color of the player's pieces.
+     */
+    public PieceColor getPieceColor();
 }
